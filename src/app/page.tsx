@@ -1,7 +1,11 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import {listQuestionBankByPageUsingPost, listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
 
 export default function Home() {
+  listQuestionBankVoByPageUsingPost({}).then(res => {
+    console.log(res);
+  })
   return (
     <main className={styles.main}>
       <div className={styles.description}>
