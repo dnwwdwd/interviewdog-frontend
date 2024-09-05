@@ -1,13 +1,19 @@
 "use client";
-import {GithubFilled, LogoutOutlined, PlusCircleFilled, SearchOutlined,} from '@ant-design/icons';
+import {GithubFilled, LogoutOutlined, SearchOutlined,} from '@ant-design/icons';
 import {ProLayout,} from '@ant-design/pro-components';
 import {Dropdown, Input,} from 'antd';
-import React from 'react';
+import React, {useState} from 'react';
 import Image from "next/image";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import GlobalFooter from "@/components/GlobalFooter";
 import {menus} from "../../../config/menu";
+import {useSelector} from "react-redux";
+import {RootState} from "@/stores";
+import getAccessibleMenus from "@/access/menuAccess";
+import MdEditor from "@/components/MdEditor";
+import MdViewer from "@/components/MdViewer";
+
 
 /**
  * 搜索条
@@ -50,10 +56,17 @@ interface Props {
 export default function BasicLayout({children}: Props) {
 
     const pathname = usePathname();
+
+    const loginUser = useSelector((state: RootState) => state.loginUser);
+
+    const [text, setText] = useState<string>('');// 搜索框内容
+
+
     return (
         <div
             id="basicLayout"
             style={{
+                minHeight: '100vh',
                 height: '100vh',
                 overflow: 'auto',
             }}
@@ -73,9 +86,9 @@ export default function BasicLayout({children}: Props) {
                     pathname,
                 }}
                 avatarProps={{
-                    src: 'https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg',
+                    src: loginUser.userAvatar || '/assets/logo/notLoginUser.png',
                     size: 'small',
-                    title: 'C1own',
+                    title: loginUser.username || '游客',
                     render: (props, dom) => {
                         return (
                             <Dropdown
@@ -117,7 +130,7 @@ export default function BasicLayout({children}: Props) {
                 }}
                 onMenuHeaderClick={(e) => console.log(e)}
                 menuDataRender={() => {
-                    return menus;
+                    return getAccessibleMenus(loginUser, menus);
                 }}
                 menuItemRender={(item, dom) => (
                     <Link
@@ -127,6 +140,8 @@ export default function BasicLayout({children}: Props) {
                     </Link>
                 )}
             >
+                <MdEditor value={text} onChange={setText}/>
+                <MdViewer value={text}/>
                 {children}
             </ProLayout>
         </div>
