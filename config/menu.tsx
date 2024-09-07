@@ -6,6 +6,16 @@ import ACCESS_ENUM from "@/access/accessEnum";
 // 顶部导航栏菜单项
 export const menus = [
     {
+        path: '/user/login',
+        name: '用户登录',
+        hideInMenu: true,
+    },
+    {
+        path: '/user/register',
+        name: '用户注册',
+        hideInMenu: true,
+    },
+    {
         path: '/',
         name: '主页',
     },
@@ -27,7 +37,17 @@ export const menus = [
                 path: '/admin/user',
                 name: '用户管理',
                 access: ACCESS_ENUM.ADMIN,
-            }
+            },
+            {
+                path: '/admin/bank',
+                name: '题库管理',
+                access: ACCESS_ENUM.ADMIN,
+            },
+            {
+                path: '/admin/question',
+                name: '题目管理',
+                access: ACCESS_ENUM.ADMIN,
+            },
         ]
     },
 ] as MenuDataItem[];

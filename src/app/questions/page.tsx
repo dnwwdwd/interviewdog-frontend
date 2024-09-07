@@ -1,10 +1,8 @@
-import Image from "next/image";
-import styles from "./index.css";
-import {Button} from "antd";
+import './index.css';
 
 export default function Question() {
   return (
-      <div id="question">
+      <div className="question">
 
       </div>
   );
