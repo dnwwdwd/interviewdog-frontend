@@ -1,8 +1,8 @@
 "use client";
 import { Button, message, Space, Typography } from 'antd';
 import React, { useRef, useState } from 'react';
-import CreateModal from "@/app/admin/user/components/CreateModal";
-import UpdateModal from "@/app/admin/user/components/UpdateModal";
+import CreateModal from "@/app/admin/bank/components/CreateModal";
+import UpdateModal from "@/app/admin/bank/components/UpdateModal";
 import {ActionType, ProColumns, ProTable} from "@ant-design/pro-table";
 import {PageContainer} from "@ant-design/pro-layout";
 import {PlusOutlined} from "@ant-design/icons";

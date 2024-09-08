@@ -38,8 +38,16 @@ const handleUpdate = async (fields: API.QuestionUpdateRequest) => {
 const UpdateModal: React.FC<Props> = (props) => {
     const {oldData, visible, columns, onSubmit, onCancel} = props;
 
-    if (!oldData) {
+    if (!oldData?.id) {
         return <></>;
+    }
+
+    const initValues = {...oldData};
+
+    // 表单转换
+    if (oldData.tags) {
+        initValues.tags = JSON.parse(oldData.tags) || [];
+
     }
 
     return (
@@ -56,12 +64,12 @@ const UpdateModal: React.FC<Props> = (props) => {
                 type="form"
                 columns={columns}
                 form={{
-                    initialValues: oldData,
+                    initialValues: initValues,
                 }}
                 onSubmit={async (values: API.QuestionAddRequest) => {
                     const success = await handleUpdate({
                         ...values,
-                        id: oldData.id as any,
+                        id: oldData?.id as any,
                     });
                     if (success) {
                         onSubmit?.(values);
