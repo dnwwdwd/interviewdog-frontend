@@ -7,7 +7,9 @@ import Link from "next/link";
 import TagList from "@/components/TagList";
 
 interface Props {
+    questionBankId: number;
     questionList?: API.QuestionVO[];
+    cardTitle: string;
 }
 
 /**
@@ -16,16 +18,16 @@ interface Props {
  * @constructor
  */
 const QuestionList = (props: Props) => {
-    const {questionList = []} = props;
+    const {questionList = [], cardTitle, questionBankId} = props;
 
     return (
-        <Card className="questionList">
+        <Card className="questionList" title={cardTitle}>
             <List
                 dataSource={questionList}
                 renderItem={(item) => (
                     <List.Item extra={<TagList tags={item.tagList}/>}>
                         <List.Item.Meta title={
-                            <Link href={`/question/${item.id}`} >
+                            <Link href={questionBankId ? `/bank/${questionBankId}/question/${item.id}` : `/question/${item.id}`} >
                                 {item.title}
                             </Link>
                         }/>

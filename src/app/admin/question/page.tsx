@@ -9,6 +9,8 @@ import TagList from "@/components/TagList";
 import MdEditor from "@/components/MdEditor";
 import CreateModal from "@/app/admin/question/components/CreateModal";
 import UpdateModal from "@/app/admin/question/components/UpdateModal";
+import UpdateBankModal from "@/app/admin/question/components/UpdateBankModal";
+import {current} from "immer";
 
 
 /**
@@ -21,6 +23,8 @@ const QuestionAdminPage: React.FC = () => {
     const [createModalVisible, setCreateModalVisible] = useState<boolean>(false);
     // 是否显示更新窗口
     const [updateModalVisible, setUpdateModalVisible] = useState<boolean>(false);
+    // 是否显示更新题目所属题库弹窗
+    const [updateBankModalVisible, setUpdateBankModalVisible] = useState<boolean>(false);
     const actionRef = useRef<ActionType>();
     // 当前题目点击的数据
     const [currentRow, setCurrentRow] = useState<API.Question>();
@@ -56,6 +60,12 @@ const QuestionAdminPage: React.FC = () => {
             title: 'id',
             dataIndex: 'id',
             valueType: 'text',
+            hideInForm: true,
+        },
+        {
+            title: '所属题库',
+            dataIndex: 'questionBankId',
+            hideInTable: true,
             hideInForm: true,
         },
         {
@@ -163,6 +173,12 @@ const QuestionAdminPage: React.FC = () => {
                     >
                         修改
                     </Typography.Link>
+                    <Typography.Link type="danger" onClick={() => {
+                        setCurrentRow(record);
+                        setUpdateBankModalVisible(true);
+                    }}>
+                        删除所属题库
+                    </Typography.Link>
                     <Typography.Link type="danger" onClick={() => handleDelete(record)}>
                         删除
                     </Typography.Link>
@@ -229,6 +245,13 @@ const QuestionAdminPage: React.FC = () => {
                     setCurrentRow(undefined);
                     actionRef.current?.reload();
                 }}
+                onCancel={() => {
+                    setUpdateModalVisible(false);
+                }}
+            />
+            <UpdateBankModal
+                visible={updateBankModalVisible}
+                questionId={currentRow?.id}
                 onCancel={() => {
                     setUpdateModalVisible(false);
                 }}

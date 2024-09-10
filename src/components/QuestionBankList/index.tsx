@@ -10,7 +10,7 @@ interface Props {
 }
 
 /**
- * Markdown 浏览器
+ * 题库列表
  * @param props
  * @constructor
  */
@@ -20,7 +20,7 @@ const QuestionBankList = (props: Props) => {
     const questionBankView = (questionBank: API.QuestionBankVO) => {
         return (
             <Card>
-                <Link href={`/banks/${questionBank.id}`}>
+                <Link href={`/bank/${questionBank.id}`}>
                     <Card.Meta
                         avatar={<Avatar src={questionBank.picture}/>}
                         title={questionBank.title}
