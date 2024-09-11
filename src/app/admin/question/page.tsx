@@ -10,7 +10,6 @@ import MdEditor from "@/components/MdEditor";
 import CreateModal from "@/app/admin/question/components/CreateModal";
 import UpdateModal from "@/app/admin/question/components/UpdateModal";
 import UpdateBankModal from "@/app/admin/question/components/UpdateBankModal";
-import {current} from "immer";
 
 
 /**
@@ -173,11 +172,11 @@ const QuestionAdminPage: React.FC = () => {
                     >
                         修改
                     </Typography.Link>
-                    <Typography.Link type="danger" onClick={() => {
+                    <Typography.Link onClick={() => {
                         setCurrentRow(record);
                         setUpdateBankModalVisible(true);
                     }}>
-                        删除所属题库
+                        修改所属题库
                     </Typography.Link>
                     <Typography.Link type="danger" onClick={() => handleDelete(record)}>
                         删除
@@ -253,7 +252,7 @@ const QuestionAdminPage: React.FC = () => {
                 visible={updateBankModalVisible}
                 questionId={currentRow?.id}
                 onCancel={() => {
-                    setUpdateModalVisible(false);
+                    setUpdateBankModalVisible(false);
                 }}
             />
         </PageContainer>
