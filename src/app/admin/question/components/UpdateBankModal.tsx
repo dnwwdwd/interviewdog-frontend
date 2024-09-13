@@ -1,10 +1,10 @@
 import {Form, message, Modal, Select} from 'antd';
 import React, {useEffect, useState} from 'react';
-import {updateQuestionUsingPost} from "@/api/questionController";
 import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
 import {
     addQuestionBankQuestionUsingPost,
-    listQuestionBankQuestionByPageUsingPost, removeQuestionBankQuestionUsingPost
+    listQuestionBankQuestionByPageUsingPost,
+    removeQuestionBankQuestionUsingPost
 } from "@/api/questionBankQuestionController";
 
 interface Props {
