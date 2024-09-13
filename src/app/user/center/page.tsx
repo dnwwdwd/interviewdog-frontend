@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/stores";
 import { useState } from "react";
 import "./index.css";
+import CalendarChart from "@/app/user/center/components/CalendarChart/page";
 
 /**
  * 用户中心页面
@@ -57,8 +58,11 @@ export default function UserCenterPage() {
                             setActiveTabKey(key);
                         }}
                     >
-                        {activeTabKey === "record" && <>aaa</>}
-                        {activeTabKey === "others" && <>bbb</>}
+                        {activeTabKey === "record" && <></>}
+                        {activeTabKey === "others" && <></>}
+                        {activeTabKey === "record" && <>
+                            <CalendarChart />
+                        </>}
                     </Card>
                 </Col>
             </Row>

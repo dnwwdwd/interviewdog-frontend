@@ -52,6 +52,21 @@ export async function getLoginUserUsingGet(options?: { [key: string]: any }) {
   });
 }
 
+/** getUserSignInRecord GET /api/user/get/sign/in */
+export async function getUserSignInRecordUsingGet(
+  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
+  params: API.getUserSignInRecordUsingGETParams,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseListInt_>('/api/user/get/sign/in', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
 /** getUserVOById GET /api/user/get/vo */
 export async function getUserVoByIdUsingGet(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
@@ -146,6 +161,14 @@ export async function userRegisterUsingPost(
       'Content-Type': 'application/json',
     },
     data: body,
+    ...(options || {}),
+  });
+}
+
+/** addUserSignIn POST /api/user/sign/in */
+export async function addUserSignInUsingPost(options?: { [key: string]: any }) {
+  return request<API.BaseResponseBoolean_>('/api/user/sign/in', {
+    method: 'POST',
     ...(options || {}),
   });
 }
