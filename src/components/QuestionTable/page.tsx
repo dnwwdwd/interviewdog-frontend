@@ -1,9 +1,10 @@
 "use client";
 import React, {useState} from 'react';
 import {ProColumns, ProTable} from "@ant-design/pro-table";
-import {listQuestionByPageUsingPost} from "@/api/questionController";
+import {listQuestionByPageUsingPost, searchQuestionVoByPageUsingPost} from "@/api/questionController";
 import TagList from "@/components/TagList";
 import {TablePaginationConfig} from "antd";
+import Link from "next/link";
 
 interface Props {
     // 默认值
@@ -36,6 +37,16 @@ const QuestionTable: React.FC = (props: Props) => {
             title: '标题',
             dataIndex: 'title',
             valueType: 'text',
+            hideInSearch: true,
+        },
+        {
+            title: '搜索',
+            dataIndex: 'searchText',
+            valueType: 'text',
+            hideInTable: true,
+            render: (_, record) => {
+                return <Link href={`/question/${record.id}`}>{record.title}</Link>
+            },
         },
         {
             title: "标签",
@@ -85,7 +96,7 @@ const QuestionTable: React.FC = (props: Props) => {
                     const sortField = Object.keys(sort)?.[0] || 'createTime';
                     const sortOrder = sort?.[sortField] || 'desc';
 
-                    const {data, code} = await listQuestionByPageUsingPost({
+                    const {data, code} = await searchQuestionVoByPageUsingPost({
                         ...params,
                         sortField,
                         sortOrder,
