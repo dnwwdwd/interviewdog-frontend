@@ -1,12 +1,14 @@
-"use server";
 import './index.css';
 import Title from "antd/es/typography/Title";
-import {Divider, Flex, message} from "antd";
+import {Divider, Flex} from "antd";
 import Link from "next/link";
 import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
 import {listQuestionVoByPageUsingPost} from "@/api/questionController";
 import QuestionBankList from "@/components/QuestionBankList";
 import QuestionList from "@/components/QuestionList";
+
+export const dynamic = 'force-dynamic';
+
 
 // 主页
 export default async function HomePage() {
@@ -20,7 +22,7 @@ export default async function HomePage() {
         });
         questionBankList = res.data.records ?? [];
     } catch (e) {
-        message.error('获取题库列表失败，' + e.message);
+        console.log('获取题库列表失败，' + e.message);
     }
 
     let questionList = [];
@@ -32,7 +34,7 @@ export default async function HomePage() {
         });
         questionList = res.data.records ?? [];
     } catch (e) {
-        message.error('获取题目列表失败，' + e.message);
+        console.log('获取题目列表失败，' + e.message);
     }
 
     return (

@@ -1,3 +1,4 @@
+"use client";
 import { Button, Form, message, Modal, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { listQuestionBankVoByPageUsingPost } from "@/api/questionBankController";

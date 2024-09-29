@@ -1,7 +1,6 @@
 "use server";
 import './index.css';
 import Title from "antd/es/typography/Title";
-import {message} from "antd";
 import {searchQuestionVoByPageUsingPost} from "@/api/questionController";
 import QuestionTable from "@/components/QuestionTable/page";
 
@@ -25,9 +24,10 @@ export default async function QuestionsPage({searchParams}) {
             sortOrder: 'desc',
         });
         questionList = res.data.records ?? [];
+        console.log(questionList);
         total = res.data.total ?? 0;
     } catch (e) {
-        message.error('获取题目列表失败，' + e.message);
+        console.log('获取题目列表失败，' + e.message);
     }
 
     return (

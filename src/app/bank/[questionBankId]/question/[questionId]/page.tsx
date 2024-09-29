@@ -1,6 +1,6 @@
 "use server";
 import "./index.css";
-import {Flex, Menu, message} from "antd";
+import {Flex, Menu} from "antd";
 import {getQuestionBankVoByIdUsingGet} from "@/api/questionBankController";
 import Title from "antd/es/typography/Title";
 import {getQuestionVoByIdUsingGet} from "@/api/questionController";
@@ -28,7 +28,7 @@ export default async function BankQuestionPage({ params }) {
     });
     bank = res?.data;
   } catch (e) {
-    message.error("获取题库详情失败，" + e.message);
+      console.log("获取题库详情失败，" + e.message);
   }
   // 如果题库不存在，进行错误处理
   if (!bank) {
@@ -42,7 +42,7 @@ export default async function BankQuestionPage({ params }) {
     });
     question = res?.data;
   } catch (e) {
-    message.error("获取题目详情失败，" + e.message);
+      console.log("获取题目详情失败，" + e.message);
   }
   // 如果题目不存在，进行错误处理
   if (!question) {

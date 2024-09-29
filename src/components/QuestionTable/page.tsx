@@ -87,12 +87,12 @@ const QuestionTable: React.FC = (props: Props) => {
                 } as TablePaginationConfig}
                 request={async (params, sort, filter) => {
                     // 判断是否是首次加载
-                    if (init) {
-                        setInit(false);
-                        if (defaultQuestionList && defaultTotal) {
-                            return;
-                        }
-                    }
+                    // if (init) {
+                    //     setInit(false);
+                    //     if (defaultQuestionList && defaultTotal) {
+                    //         return;
+                    //     }
+                    // }
                     const sortField = Object.keys(sort)?.[0] || 'createTime';
                     const sortOrder = sort?.[sortField] || 'desc';
 

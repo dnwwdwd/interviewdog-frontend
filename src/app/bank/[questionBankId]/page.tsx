@@ -1,7 +1,7 @@
 "use server";
 import "./index.css";
-import { Avatar, Button, Card, message } from "antd";
-import { getQuestionBankVoByIdUsingGet } from "@/api/questionBankController";
+import {Avatar, Button, Card} from "antd";
+import {getQuestionBankVoByIdUsingGet} from "@/api/questionBankController";
 import Meta from "antd/es/card/Meta";
 import Paragraph from "antd/es/typography/Paragraph";
 import QuestionList from "@/components/QuestionList";
@@ -25,7 +25,7 @@ export default async function BankPage({ params }) {
     });
     bank = res?.data;
   } catch (e) {
-    message.error("获取题库详情失败，" + e.message);
+    console.log("获取题库详情失败，" + e.message);
   }
   // 如果题库不存在，进行错误处理
   if (!bank) {

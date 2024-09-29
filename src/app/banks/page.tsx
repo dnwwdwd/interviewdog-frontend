@@ -1,7 +1,6 @@
 "use server";
 import './index.css';
 import Title from "antd/es/typography/Title";
-import {message} from "antd";
 import {listQuestionBankVoByPageUsingPost} from "@/api/questionBankController";
 import QuestionBankList from "@/components/QuestionBankList";
 
@@ -12,17 +11,17 @@ import QuestionBankList from "@/components/QuestionBankList";
 export default async function BanksPage() {
 
     let questionBankList = [];
-    const pageSize = 200;
 
     try {
         const res = await listQuestionBankVoByPageUsingPost({
-            pageSize: pageSize,
+            pageSize: 200,
             sortField: 'createTime',
             sortOrder: 'descend',
         });
         questionBankList = res.data.records ?? [];
+        console.log(questionBankList);
     } catch (e) {
-        message.error('获取题库列表失败，' + e.message);
+        console.log('获取题库列表失败，' + e.message);
     }
 
     return (

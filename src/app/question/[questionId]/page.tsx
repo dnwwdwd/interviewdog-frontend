@@ -1,12 +1,9 @@
 "use server";
 import "./index.css";
-import {Flex, Menu, message} from "antd";
-import Title from "antd/es/typography/Title";
+import {Flex} from "antd";
 import {getQuestionVoByIdUsingGet} from "@/api/questionController";
-import Sider from "antd/es/layout/Sider";
 import {Content} from "antd/es/layout/layout";
 import QuestionCard from "@/components/QuestionCard";
-import Link from "next/link";
 
 /**
  * 题目详情页（从外层进入的）
@@ -24,7 +21,7 @@ export default async function QuestionPage({ params }) {
     });
     question = res?.data;
   } catch (e) {
-    message.error("获取题目详情失败，" + e.message);
+      console.log("获取题目详情失败，" + e.message);
   }
   // 如果题目不存在，进行错误处理
   if (!question) {

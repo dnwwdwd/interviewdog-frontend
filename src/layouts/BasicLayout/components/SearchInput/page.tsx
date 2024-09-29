@@ -25,10 +25,6 @@ export const SearchInput = (props: Props) => {
                 alignItems: 'center',
                 marginInlineEnd: 24,
             }}
-            onMouseDown={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-            }}
         >
             <Input.Search
                 style={{
@@ -40,7 +36,7 @@ export const SearchInput = (props: Props) => {
                 }
                 placeholder="搜索题目"
                 onSearch={(value: string) => {
-                    router.push(`/questions?q=${value}`);
+                    window.open(`/questions?q=${value}`, '_blank');
                 }}
             />
         </div>
